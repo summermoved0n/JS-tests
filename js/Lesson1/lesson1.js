@@ -286,3 +286,141 @@ function Task20() {
   checkStorage(200, 250);
   checkStorage(150, 0);
 }
+
+function Task21() {
+  function isNumberInRange(start, end, number) {
+    const isInRange = number >= start && number <= end; // Change this line
+
+    return isInRange;
+  }
+
+  isNumberInRange(10, 30, 17);
+  isNumberInRange(10, 30, 5);
+  isNumberInRange(20, 50, 24);
+  isNumberInRange(20, 50, 76);
+}
+
+function Task22() {
+  function checkIfCanAccessContent(subType) {
+    const canAccessContent = subType === "pro" || subType === "vip"; // Change this line
+
+    return canAccessContent;
+  }
+
+  checkIfCanAccessContent("pro");
+  checkIfCanAccessContent("starter");
+  checkIfCanAccessContent("vip");
+  checkIfCanAccessContent("free");
+}
+
+function Task23() {
+  function isNumberNotInRange(start, end, number) {
+    const isInRange = number >= start && number <= end;
+    const isNotInRange = !isInRange; // Change this line
+
+    return isNotInRange;
+  }
+
+  isNumberNotInRange(10, 30, 17);
+  isNumberNotInRange(10, 30, 5);
+  isNumberNotInRange(20, 50, 24);
+  isNumberNotInRange(20, 50, 76);
+}
+
+function Task24() {
+  function getDiscount(totalSpent) {
+    const BASE_DISCOUNT = 0;
+    const BRONZE_DISCOUNT = 0.02;
+    const SILVER_DISCOUNT = 0.05;
+    const GOLD_DISCOUNT = 0.1;
+    let discount;
+    // Change code below this line
+    if (totalSpent >= 50000) {
+      discount = GOLD_DISCOUNT;
+    } else if (totalSpent >= 20000) {
+      discount = SILVER_DISCOUNT;
+    } else if (totalSpent >= 5000) {
+      discount = BRONZE_DISCOUNT;
+    } else {
+      discount = BASE_DISCOUNT;
+    }
+
+    return discount;
+  }
+
+  getDiscount(137000);
+  getDiscount(46900);
+  getDiscount(8250);
+  getDiscount(1300);
+  getDiscount(5000);
+  getDiscount(20000);
+  getDiscount(50000);
+}
+
+function Task25() {
+  function checkStorage(available, ordered) {
+    let message;
+    // Change code below this line
+
+    message =
+      ordered > available
+        ? "Not enough goods in stock!"
+        : "The order is accepted, our manager will contact you";
+    // Change code above this line
+    return message;
+  }
+
+  checkStorage(100, 50);
+  checkStorage(100, 130);
+  checkStorage(200, 20);
+  checkStorage(200, 150);
+  checkStorage(150, 180);
+}
+
+function Task26() {
+  function checkPassword(password) {
+    const ADMIN_PASSWORD = "jqueryismyjam";
+    let message;
+    // Change code below this line
+    message =
+      password === ADMIN_PASSWORD
+        ? "Access is allowed"
+        : "Access denied, wrong password!";
+    // Change code above this line
+    return message;
+  }
+
+  checkPassword("jqueryismyjam");
+  checkPassword("angul4r1sl1f3");
+  checkPassword("r3actsux");
+}
+
+function Task27() {
+  function getSubscriptionPrice(type) {
+    let price;
+    // Change code below this line
+
+    switch (
+      type // Change this line
+    ) {
+      case "starter": // Change this line
+        price = 0; // Change this line
+        break;
+
+      case "professional": // Change this line
+        price = 20; // Change this line
+        break;
+
+      case "organization": // Change this line
+        price = 50; // Change this line
+        break;
+    }
+
+    // Change code above this line
+    return price;
+  }
+
+  getSubscriptionPrice("professional");
+  getSubscriptionPrice("organization");
+  getSubscriptionPrice("starter");
+}
