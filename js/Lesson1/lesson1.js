@@ -424,3 +424,187 @@ function Task27() {
   getSubscriptionPrice("organization");
   getSubscriptionPrice("starter");
 }
+
+function Task28() {
+  function checkPassword(password) {
+    const ADMIN_PASSWORD = "jqueryismyjam";
+    let message;
+    // Change code below this line
+
+    switch (password) {
+      case null:
+        message = "Canceled by user!";
+        break;
+
+      case ADMIN_PASSWORD:
+        message = "Welcome!";
+        break;
+
+      default:
+        message = "Access denied, wrong password!";
+    }
+
+    // Change code above this line
+    return message;
+  }
+
+  checkPassword("mangohackzor");
+  checkPassword(null);
+  checkPassword("polyhax");
+  checkPassword("jqueryismyjam");
+}
+
+function Task29() {
+  function getShippingCost(country) {
+    let message;
+
+    const countryName = {
+      china: "China",
+      chile: "Chile",
+      australia: "Australia",
+      jamaica: "Jamaica",
+    };
+
+    const countryPrices = {
+      china: 100,
+      chile: 250,
+      australia: 170,
+      jamaica: 120,
+    };
+
+    function textMaker(country, price) {
+      return (message = `Shipping to ${country} will cost ${price} credits`);
+    }
+    // Change code below this line
+    switch (country) {
+      case countryName.china:
+        textMaker(countryName.china, countryPrices.china);
+        break;
+      case countryName.chile:
+        textMaker(countryName.chile, countryPrices.chile);
+        break;
+      case countryName.australia:
+        textMaker(countryName.australia, countryPrices.australia);
+        break;
+      case countryName.jamaica:
+        textMaker(countryName.jamaica, countryPrices.jamaica);
+        break;
+      default:
+        message = `Sorry, there is no delivery to your country`;
+    }
+    // Change code above this line
+    return message;
+  }
+
+  getShippingCost("Australia");
+  getShippingCost("Germany");
+  getShippingCost("China");
+  getShippingCost("Chile");
+  getShippingCost("Jamaica");
+  getShippingCost("Sweden");
+}
+
+function Task30() {
+  function getNameLength(name) {
+    const message = `Name ${name} is ${name.length} characters long`; // Change this line
+
+    return message;
+  }
+
+  getNameLength("Poly");
+  getNameLength("Harambe");
+  getNameLength("Billy");
+  getNameLength("Joe");
+}
+
+function Task31() {
+  const courseTopic = "JavaScript essentials";
+  // Change code below this line
+
+  const courseTopicLength = courseTopic.length;
+  const firstElement = courseTopic[0];
+  const lastElement = courseTopic[courseTopicLength - 1];
+  // Change code above this line
+}
+
+function Task32() {
+  function getSubstring(string, length) {
+    const substring = string.slice(0, length); // Change this line
+
+    return substring;
+  }
+
+  getSubstring("Hello world", 3);
+  getSubstring("Hello world", 6);
+  getSubstring("Hello world", 8);
+  getSubstring("Hello world", 11);
+  getSubstring("Hello world", 0);
+}
+
+function Task33() {
+  function formatMessage(message, maxLength) {
+    let result;
+    // Change code below this line
+    if (message.length > maxLength) {
+      const newMessage = message.slice(0, maxLength);
+      result = `${newMessage}...`;
+    } else {
+      result = message;
+    }
+    /// Change code above this line
+    return result;
+  }
+
+  formatMessage("Curabitur ligula sapien", 16);
+  formatMessage("Curabitur ligula sapien", 23);
+  formatMessage("Vestibulum facilisis purus nec", 20);
+  formatMessage("Vestibulum facilisis purus nec", 30);
+  formatMessage("Nunc sed turpis a felis in nunc fringilla", 15);
+  formatMessage("Nunc sed turpis a felis in nunc fringilla", 41);
+}
+
+function Task34() {
+  function normalizeInput(input) {
+    const normalizedInput = input.toLowerCase(); // Change this line
+
+    return normalizedInput;
+  }
+
+  normalizeInput("Hello world");
+  normalizeInput("This ISN'T SpaM");
+  normalizeInput("Big SALE");
+}
+
+function Task35() {
+  function checkForName(fullName, name) {
+    const result = fullName.includes(name); // Change this line
+    return result;
+  }
+
+  checkForName("Egor Kolbasov", "Egor");
+  checkForName("Egor Kolbasov", "egor");
+  checkForName("Egor Kolbasov", "egOr");
+  checkForName("Egor Kolbasov", "Zhenya");
+  checkForName("Vadim Nekrasov", "Vadim");
+  checkForName("Vadim Nekrasov", "vadim");
+  checkForName("Vadim Nekrasov", "Dima");
+}
+
+function Task36() {
+  function checkForSpam(message) {
+    let result;
+    // Change code below this line
+    const lowerCaseMsg = message.toLowerCase();
+    result = lowerCaseMsg.includes("spam") || lowerCaseMsg.includes("sale");
+    // Change code above this line
+    return result;
+  }
+
+  checkForSpam("Latest technology news");
+  checkForSpam("JavaScript weekly newsletter");
+  checkForSpam("Get best sale offers now!");
+  checkForSpam("Amazing SalE, only tonight!");
+  checkForSpam("Trust me, this is not a spam message");
+  checkForSpam("Get rid of sPaM emails. Our book in on sale!");
+  checkForSpam("[SPAM] How to earn fast money?");
+}
