@@ -1,29 +1,19 @@
-const textAnimals = document.getElementById("categories");
-const categoriesLength = textAnimals.children.length;
+const categories = document.querySelectorAll(".item");
+const subtitles = document.querySelectorAll(".item h2");
+console.log(categories.length);
 
-console.log(textAnimals.firstElementChild.lastElementChild.childNodes[1]);
+const arrayOfTitles = [];
 
-function getTotalOfCategory(value) {
-  let total = 0;
-  for (let i = 0; i < array.length; i++) {}
-}
+categories.forEach((item) => {
+  const nameCategory = item.firstElementChild.textContent;
+  const numberCategory = item.lastElementChild.children.length;
+  arrayOfTitles.push({ [nameCategory]: numberCategory });
+});
 
-console.log("Number of categories: ", categoriesLength);
+console.log("Number of categories: ", categories.length);
 
-console.log(
-  "Category: ",
-  textAnimals.firstElementChild.firstElementChild.textContent
-);
-console.log("Elements: ", 4);
-
-console.log(
-  "Category: ",
-  textAnimals.firstElementChild.nextElementSibling.firstElementChild.textContent
-);
-console.log("Elements: ", 3);
-
-console.log(
-  "Category: ",
-  textAnimals.lastElementChild.firstElementChild.textContent
-);
-console.log("Elements: ", 5);
+arrayOfTitles.forEach((item) => {
+  const keys = Object.keys(item);
+  const values = Object.values(item);
+  console.log(`Category: ${keys} Elements: ${values}`);
+});
