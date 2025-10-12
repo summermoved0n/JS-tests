@@ -1,74 +1,40 @@
-class Counter {
-    constructor(name = 'unnamed', initialCount = 0) {
-        this.name = String(name);
-        this.count = Number.isFinite(initialCount) ? initialCount : 0;
-    }
+class Hero {
+  constructor(name = "hero", level = 1, health = 100, mana = 100) {
+    this.name = name;
+    this.level = level;
+    this.health = health;
+    this.mana = mana;
+    this.weapon = { type: "sword", damage: 5 };
+  }
 
-    inc(n = 1) {
-        const delta = Number(n) || 0;
-        this.count += delta;
-        return this.count;
-    }
+  attack() {
+    console.log(
+      `${this.name} attacks with ${this.weapon.type} and deals ${this.weapon.damage} damage`
+    );
+  }
 
-    dec(n = 1) {
-        const delta = Number(n) || 0;
-        this.count -= delta;
-        return this.count;
-    }
+  defend() {
+    console.log(`${this.name} defends`);
+  }
 
-    reset(value = 0) {
-        this.count = Number(value) || 0;
-        return this.count;
-    }
+  heal(amount) {
+    this.health += amount;
+    console.log(
+      `${this.name} heals for ${amount} points. Current health: ${this.health}`
+    );
+  }
 
-    getValue() {
-        return this.count;
-    }
-
-    toString() {
-        return `${this.constructor.name} "${this.name}": ${this.count}`;
-    }
+  getDamage(value) {
+    this.health -= value;
+  }
 }
 
-class TimedCounter extends Counter {
+const hero = new Hero("Aragorn", 10, 100, 50);
 
-    constructor(nameOrOptions = 'unnamed', initialCount = 0, intervalMs = 1000) {
-        if (typeof nameOrOptions === 'object' && nameOrOptions !== null) {
-            const { name = 'unnamed', initialCount: ic = 0, intervalMs: im = 1000 } = nameOrOptions;
-            super(name, ic);
-            this.intervalMs = Number.isFinite(im) ? im : 1000;
-        } else {
-            super(nameOrOptions, initialCount);
-            this.intervalMs = Number.isFinite(intervalMs) ? intervalMs : 1000;
-        }
+hero.getDamage(20);
+hero.attack();
+hero.defend();
+hero.heal(15);
+hero.getDamage(30);
 
-        this.timerId = null;
-    }
-
-    start() {
-        if (this.timerId !== null) return this.timerId;
-
-        this.timerId = setInterval(() => {
-            // use the inherited inc method so behavior is consistent
-            this.inc(1);
-            console.log(`Counter "${this.name}" incremented to ${this.count}`);
-        }, this.intervalMs);
-
-        return this.timerId;
-    }
-
-    stop() {
-        if (this.timerId === null) return false;
-        clearInterval(this.timerId);
-        this.timerId = null;
-        return true;
-    }
-
-    isRunning() {
-        return this.timerId !== null;
-    }
-}
-
-const t = new TimedCounter('t', 0, 200)
-
-console.log(t.start())
+console.log(hero);
