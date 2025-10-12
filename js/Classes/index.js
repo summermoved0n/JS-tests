@@ -4,7 +4,6 @@ class Counter {
         this.count = Number.isFinite(initialCount) ? initialCount : 0;
     }
 
-
     inc(n = 1) {
         const delta = Number(n) || 0;
         this.count += delta;
@@ -22,54 +21,54 @@ class Counter {
         return this.count;
     }
 
-
     getValue() {
         return this.count;
     }
-
 
     toString() {
         return `${this.constructor.name} "${this.name}": ${this.count}`;
     }
 }
 
-class TimedCounter extends Counter {    
-    constructor({name, initialCount}) {
-        super(name, initialCount);
-        this.name = String(name);
-        this.count = Number.isFinite(initialCount) ? initialCount : 0;
+class TimedCounter extends Counter {
+
+    constructor(nameOrOptions = 'unnamed', initialCount = 0, intervalMs = 1000) {
+        if (typeof nameOrOptions === 'object' && nameOrOptions !== null) {
+            const { name = 'unnamed', initialCount: ic = 0, intervalMs: im = 1000 } = nameOrOptions;
+            super(name, ic);
+            this.intervalMs = Number.isFinite(im) ? im : 1000;
+        } else {
+            super(nameOrOptions, initialCount);
+            this.intervalMs = Number.isFinite(intervalMs) ? intervalMs : 1000;
+        }
+
         this.timerId = null;
     }
 
     start() {
-        if(this.timerId) {
-            return;
-        }
+        if (this.timerId !== null) return this.timerId;
 
-        const timerId = setInterval(() => {this.count += 1,
-        console.log(`Counter "${this.name}" incremented to ${this.count}`);
-        }, 1000);    
-        return this.timerId = timerId;
+        this.timerId = setInterval(() => {
+            // use the inherited inc method so behavior is consistent
+            this.inc(1);
+            console.log(`Counter "${this.name}" incremented to ${this.count}`);
+        }, this.intervalMs);
+
+        return this.timerId;
     }
 
-    stop() {   
-        if(!this.timerId) {
-            return this.timerId;
-        }
-
+    stop() {
+        if (this.timerId === null) return false;
         clearInterval(this.timerId);
-        return 'stopped';
+        this.timerId = null;
+        return true;
     }
 
     isRunning() {
-        return Boolean(this.timerId);
+        return this.timerId !== null;
     }
 }
 
-const c = new TimedCounter({name: 'MyTimedCounter', initialCount: 10});
+const t = new TimedCounter('t', 0, 200)
 
-console.log(c.stop());
-console.log(c.isRunning());
-console.log(c.start());
-console.log(c.isRunning());
-console.log(c.stop());
+console.log(t.start())
