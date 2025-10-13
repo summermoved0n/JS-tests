@@ -1,40 +1,83 @@
-class Hero {
-  constructor(name = "hero", level = 1, health = 100, mana = 100) {
+class Person {
+  constructor(name, age) {
     this.name = name;
-    this.level = level;
-    this.health = health;
-    this.mana = mana;
-    this.weapon = { type: "sword", damage: 5 };
+    this.age = age;
   }
 
-  attack() {
-    console.log(
-      `${this.name} attacks with ${this.weapon.type} and deals ${this.weapon.damage} damage`
-    );
-  }
-
-  defend() {
-    console.log(`${this.name} defends`);
-  }
-
-  heal(amount) {
-    this.health += amount;
-    console.log(
-      `${this.name} heals for ${amount} points. Current health: ${this.health}`
-    );
-  }
-
-  getDamage(value) {
-    this.health -= value;
+  introduce() {
+    console.log(`Hi, my name is ${this.name} and I am ${this.age} years old.`);
   }
 }
 
-const hero = new Hero("Aragorn", 10, 100, 50);
+class Student extends Persone {
+  constructor(name, age, grade) {
+    super(name, age);
+    this.grade = grade;
+  }
 
-hero.getDamage(20);
-hero.attack();
-hero.defend();
-hero.heal(15);
-hero.getDamage(30);
+  stydy() {
+    console.log(`${this.name} is studying for grade ${this.grade}.`);
+  }
+}
 
-console.log(hero);
+class BankAccount {
+  #balance;
+
+  constructor(balance) {
+    this.#balance = balance;
+  }
+
+  deposit(amount) {
+    this.#balance += amount;
+  }
+
+  withdraw(amount) {
+    this.#balance -= amount;
+  }
+
+  getBalance() {
+    return this.#balance;
+  }
+}
+
+class Animal {
+  speak() {
+    return "Some sound";
+  }
+}
+
+class Dog extends Animal {
+  speak() {
+    return "Woof";
+  }
+}
+
+class Cat extends Animal {
+  speak() {
+    return "Meow";
+  }
+}
+
+class Library {
+  constructor() {
+    this.books = ["1984", "To Kill a Mockingbird", "The Great Gatsby"];
+  }
+
+  addBook(title) {
+    this.books.push(title);
+  }
+
+  listBooks() {
+    return this.books;
+  }
+
+  findBook(title) {
+    return this.books.includes(title);
+  }
+}
+
+const l = new Library();
+l.addBook("Moby");
+
+console.log(l.listBooks());
+console.log(l.findBook("1984"));
