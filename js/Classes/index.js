@@ -1,4 +1,4 @@
-class Person {
+class Persone {
   constructor(name, age) {
     this.name = name;
     this.age = age;
@@ -76,8 +76,99 @@ class Library {
   }
 }
 
-const l = new Library();
-l.addBook("Moby");
+class MathHelper {
+  static add(a, b) {
+    return a + b;
+  }
 
-console.log(l.listBooks());
-console.log(l.findBook("1984"));
+  static multiply(a, b) {
+    return a * b;
+  }
+}
+
+class Rectangle {
+  constructor(width, height) {
+    this.width = width;
+    this.height = height;
+  }
+
+  get area() {
+    return this.width * this.height;
+  }
+
+  set setWidth(width) {
+    if (width <= 0) {
+      throw new Error("Width must be positive");
+    }
+
+    this.width = width;
+  }
+}
+
+class Shape {
+  getArea() {
+    throw new Error("Method 'getArea()' must be implemented.");
+  }
+}
+
+class Circle extends Shape {
+  constructor(radius) {
+    super();
+    this.radius = radius;
+  }
+
+  getArea() {
+    return Math.PI * Math.pow(this.radius, 2);
+  }
+}
+
+class Square extends Shape {
+  constructor(side) {
+    super();
+    this.side = side;
+  }
+
+  getArea() {
+    return Math.pow(this.side, 2);
+  }
+}
+
+/**
+ *  Vehicle -> Car -> ElectricCar
+ */
+
+class Vehicle {
+  move() {
+    console.log("The vehicle is moving");
+  }
+}
+
+class Car extends Vehicle {
+  drive() {
+    console.log("The car is driving");
+  }
+}
+
+class ElectricCar extends Car {
+  charge() {
+    console.log("The electric car is charging");
+  }
+}
+
+class Team {
+  constructor() {
+    this.players = [];
+  }
+
+  addPlayer(player) {
+    this.players.push(player);
+  }
+
+  listPlayers() {
+    return this.players;
+  }
+
+  findByPosition(position) {
+    return this.players.filter((player) => player.position === position);
+  }
+}
