@@ -3,10 +3,10 @@ class User {
 
   static count = 0;
 
-  constructor(username, email) {
+  constructor(username, email, password) {
     this.username = username;
     this.email = email;
-    this.#password = null;
+    this.#password = password;
   }
 
   login() {
@@ -38,6 +38,9 @@ class Moderator extends User {
   }
 }
 
-const u1 = new User("Dmytro", "dmytro@mail.com", "1234");
+const u1 = new User("Dmytro", "dmytro@mail.com", "12435");
 const admin = new Admin("Anna", "admin@mail.com", "root");
 const mod = new Moderator("Max", "mod@mail.com", "pass");
+
+console.log(u1);
+console.log(u1.checkPassword("12435"));
