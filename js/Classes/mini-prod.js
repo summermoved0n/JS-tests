@@ -41,6 +41,3 @@ class Moderator extends User {
 const u1 = new User("Dmytro", "dmytro@mail.com", "12435");
 const admin = new Admin("Anna", "admin@mail.com", "root");
 const mod = new Moderator("Max", "mod@mail.com", "pass");
-
-console.log(u1);
-console.log(u1.checkPassword("12435"));
