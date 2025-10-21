@@ -1,38 +1,34 @@
 "use strict";
 
-export class AdvencedFetcher {
-  constructor(baseUrl, options = {}) {
-    const { defaultLimit = 5, maxRetries = 3, backoddMs = 200 } = options;
-    this.baseUrl = baseUrl;
-    this.options = options;
+class AdvencedFetcher {
+  static instances = 0;
+
+  constructor(baseURL, options = {}) {
+    const { defaultLimit = 5, maxRetries = 3, backoffMs = 200 } = options;
+    this.baseURL = baseURL;
+    AdvencedFetcher.instances += 1;
 
     let currentPage = 1;
-    let isFetchingFlag = false;
-    let cache = new Map();
+    let isFetching = false;
 
     this.getPage = () => currentPage;
-    this.setPage = (page) => {
-      currentPage = page;
+    this.setPage = (n) => {
+      if (n < 0) {
+        throw new Error("Page number cannot be negative");
+      }
+      currentPage = n;
     };
     this.nextPage = () => (currentPage += 1);
-    this.prevPage = () => (currentPage -= 1);
-
-    this.isFetching = () => isFetchingFlag;
-    this.setFetching = (flag) => {
-      if (typeof flag !== "boolean") {
-        throw new Error("Flag must be a boolean");
+    this.prevPage = () => {
+      if (currentPage === 1) {
+        throw new Error("Already at the first page");
       }
-      isFetchingFlag = flag;
+      currentPage -= 1;
     };
 
-    this.getFromCache = (page, limit) => cache.get(`${page}-${limit}`) || null;
-    this.setCache = (page, limit, data) => {
-      cache.set(`${page}-${limit}`, { data, fetchedAt: Date.now() });
-    };
-
-    this.getStats = () => {};
+    this.isFetching = () => isFetching;
   }
 }
 
-const AF = new AdvencedFetcher("https://api.example.com/data");
-console.log(AF.getPage()); // 1
+const fetcher = new AdvencedFetcher("https://api.example.com/data");
+console.log(fetcher.instances); // 1
