@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * @param {number[]} nums
  * @param {number} target
@@ -24,12 +26,9 @@ var twoSum = function (nums, target) {
  * @return {boolean}
  */
 var isPalindrome = function (x) {
-  console.log(x);
-  const str = x.split("").reverse().join("");
-  console.log(str);
-  const match = str === x;
-  console.log(match);
+  const str = x.toString().split("").reverse().join("");
+  const match = str === x.toString();
   return match;
 };
 
-isPalindrome("10"); // true
+isPalindrome(121); // true
